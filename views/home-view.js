@@ -1,6 +1,7 @@
 const json = (user) => {
-	const jsonView = `{
+	const jsonView = {
 		"type": "home",
+		"callback_id": "home_view",
 		"blocks": [{
 				"type": "header",
 				"text": {
@@ -101,9 +102,9 @@ const json = (user) => {
 				"type": "divider"
 			}
 		]
-	}`
+	}
 
-	return obj = JSON.parse(jsonView)
+	return jsonView
 }
 
 module.exports = {
