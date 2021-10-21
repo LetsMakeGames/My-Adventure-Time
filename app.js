@@ -25,14 +25,22 @@ app.event('app_home_opened', async ({ event, client }) => {
     views.publishView(event, client)
   }
 
-  catch ( error ) {
+  catch (error) {
     console.error(error)
   }
 
 });
 
-app.action('create_button', async ({ ack }) => {
+app.action('create_button', async ({ ack, body, actions}) => {
   await ack()
+
+  try {
+    views.publishView(body, actions)
+  }
+
+  catch (error) { 
+    console.error(error)
+  }
 });
 
 app.action('continue_button', async ({ ack }) => {
