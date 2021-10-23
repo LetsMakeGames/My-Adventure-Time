@@ -7,6 +7,8 @@ const publishView = async (data) => {
 
     const { event = {}, client = {}, actions = [{}] } = data
 
+    console.log(data)
+
     if (event.type == 'app_home_opened') {
 
         // Call views.publish with the built-in client
@@ -30,11 +32,14 @@ const publishView = async (data) => {
                 'Content-Type': 'application/json; charset=utf-8'
             },
             body: {
-                // Need to implement a select menu for approvals
+                // Need to implement a select menu for stories
                 user_id: 'U023QQ7DPME',
+                trigger_id: data.trigger_id,
                 view: storyView.json()
             }
 
+        }, (error, response, body) => {
+            console.log(response.body)
         });
 
         return result
