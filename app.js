@@ -1,5 +1,6 @@
 require('dotenv').config()
-const { App } = require('@slack/bolt');
+const { App } = require('@slack/bolt')
+const sheets = require('./utils/sheets.js')
 const views = require('./utils/view.js')
 
 // Initializes your app with your bot token and signing secret
@@ -7,6 +8,8 @@ const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
   token: process.env.SLACK_BOT_TOKEN,
 });
+
+sheets.createRow();
 
 /* Add functionality here */
 
@@ -50,7 +53,7 @@ app.action('continue_button', async ({ ack }) => {
 (async () => {
 
   // Start the app
-  await app.start(process.env.PORT || 3000);
+  await app.start(Number(process.env.PORT) || 3000);
 
   console.log('⚡️ Bolt app is running!');
 
